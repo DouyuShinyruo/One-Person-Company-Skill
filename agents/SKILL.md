@@ -1,11 +1,11 @@
 ---
-name: solo-company
+name: one-person-company
 description: "一人公司的 AI 团队。根据任务快速组建临时 AI Agent 团队协作，像拥有完整团队一样独立运作。"
 argument-hint: "[任务描述]"
 disable-model-invocation: true
 ---
 
-# Solo Company - 组建你的 AI 团队
+# One Person Company - 组建你的 AI 团队
 
 你需要根据下面的任务，从公司现有的 AI Agent 中挑选最合适的成员，组建一支临时团队来协作完成。
 

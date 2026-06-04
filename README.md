@@ -1,4 +1,4 @@
-# Solo Company Skill
+# One Person Company Skill
 
 一人公司的 AI 团队。根据任务快速组建临时 AI Agent 团队协作，让你像拥有完整团队一样独立运作。
 
@@ -31,7 +31,7 @@
 
 ```bash
 # 假设你的项目在 ~/my-project
-cp SKILL.md ~/my-project/.claude/skills/solo-company.md
+cp SKILL.md ~/my-project/.claude/skills/one-person-company.md
 ```
 
 ### 2. 复制 Agent 文件
@@ -61,29 +61,29 @@ cp agents/*.md ~/my-project/.claude/agents/
 在 Claude Code 中运行：
 
 ```
-/solo-company [任务描述]
+/one-person-company [任务描述]
 ```
 
 ## 使用示例
 
 ### 产品设计场景
 ```
-/solo-company 我要做一个面向独立开发者的项目管理工具，帮我从定位到设计给出完整方案
+/one-person-company 我要做一个面向独立开发者的项目管理工具，帮我从定位到设计给出完整方案
 ```
 
 ### 技术实现场景
 ```
-/solo-company 我们要开发一个用户认证系统，包括登录、注册、密码重置功能
+/one-person-company 我们要开发一个用户认证系统，包括登录、注册、密码重置功能
 ```
 
 ### 营销策略场景
 ```
-/solo-company 帮我制定一个 SaaS 产品的上线营销策略
+/one-person-company 帮我制定一个 SaaS 产品的上线营销策略
 ```
 
 ### 商业决策场景
 ```
-/solo-company 我们应该按订阅收费还是一次性买断？帮我分析
+/one-person-company 我们应该按订阅收费还是一次性买断？帮我分析
 ```
 
 ## 工作原理
