@@ -21,13 +21,18 @@
 | QA       | 测试策略、质量把控、Bug 分析       | J.S. Bach      |
 | 营销     | 定位、品牌、获客、内容             | Seth Godin     |
 | 运营     | 用户运营、增长、社区、PMF          | Paul Graham    |
-| 销售     | 定价、销售漏斗、转化               | Gary Ross      |
+| 销售     | 定价、销售漏斗、转化               | Aaron Ross     |
 
 ## 安装步骤
 
+### 前置要求
+
+- [Claude Code](https://claude.ai/code) CLI 已安装
+- 已启用 Agent Teams 实验性功能
+
 ### 1. 复制 Skill 文件
 
-将整个仓库克隆或下载后，将 `SKILL.md` 复制到你的项目 `.claude/skills/` 目录下：
+将本仓库的 `SKILL.md`（项目根目录）复制到你的项目 `.claude/skills/` 目录下：
 
 ```bash
 # 假设你的项目在 ~/my-project
@@ -36,15 +41,35 @@ cp SKILL.md ~/my-project/.claude/skills/one-person-company.md
 
 ### 2. 复制 Agent 文件
 
-将 `agents/` 目录下的所有 `.md` 文件复制到你的项目 `.claude/agents/` 目录下：
+将 `agents/` 目录整体复制到你的项目 `.claude/` 目录下：
 
 ```bash
-cp agents/*.md ~/my-project/.claude/agents/
+# agents/ 目录下的每个子目录包含一个 Agent 的 SKILL.md
+cp -r agents/ ~/my-project/.claude/agents/
+```
+
+复制后的目录结构应为：
+
+```
+your-project/.claude/
+├── skills/
+│   └── one-person-company.md       # 主 Skill 入口
+└── agents/
+    ├── ceo-bezos/SKILL.md
+    ├── cto-vogels/SKILL.md
+    ├── fullstack-dhh/SKILL.md
+    ├── interaction-cooper/SKILL.md
+    ├── marketing-godin/SKILL.md
+    ├── operations-pg/SKILL.md
+    ├── product-norman/SKILL.md
+    ├── qa-bach/SKILL.md
+    ├── sales-ross/SKILL.md
+    └── ui-duarte/SKILL.md
 ```
 
 ### 3. 启用 Agent Teams（必需）
 
-在你的项目 `.claude/settings.json` 中添加：
+在你的项目 `.claude/settings.json` 中添加 Agent Teams 配置。可以参考本仓库的 `config/settings.json`：
 
 ```json
 {
@@ -54,7 +79,7 @@ cp agents/*.md ~/my-project/.claude/agents/
 }
 ```
 
-> 或直接使用项目根目录下的 `config/settings.json` 作为参考。
+> **⚠️ 安全提示**：本仓库 `config/settings.json` 中的 `defaultMode: "bypassPermissions"` 仅用于演示。建议你根据自己的需求调整权限设置，避免在生产项目中使用过于宽松的权限。详见 [Claude Code 权限文档](https://docs.anthropic.com/en/docs/claude-code/settings)。
 
 ## 使用方法
 
@@ -89,18 +114,35 @@ cp agents/*.md ~/my-project/.claude/agents/
 ## 工作原理
 
 1. **任务分析**：Skill 分析任务性质，选择 2-5 个最相关的 Agent
-2. **团队组建**：创建临时 Agent Team，为每个成员分配具体任务
+2. **团队组建**：读取每个 Agent 的角色定义文件，创建临时 Agent Team，为每个成员分配具体任务
 3. **并行协作**：各 Agent 独立工作，产出存放于 `docs/<role>/` 目录
 4. **汇总输出**：Team lead 协调并汇总各成员结论
 
 ## 目录结构
 
 ```
-├── SKILL.md               # 核心 skill 文件
-├── agents/                # 10 个专业 agent
-│   ├── ceo-bezos.md
-│   ├── cto-vogels.md
-│   └── ...
+├── SKILL.md               # 主 Skill 入口（slash command）
+├── agents/                # 10 个专业 Agent
+│   ├── ceo-bezos/
+│   │   └── SKILL.md
+│   ├── cto-vogels/
+│   │   └── SKILL.md
+│   ├── fullstack-dhh/
+│   │   └── SKILL.md
+│   ├── interaction-cooper/
+│   │   └── SKILL.md
+│   ├── marketing-godin/
+│   │   └── SKILL.md
+│   ├── operations-pg/
+│   │   └── SKILL.md
+│   ├── product-norman/
+│   │   └── SKILL.md
+│   ├── qa-bach/
+│   │   └── SKILL.md
+│   ├── sales-ross/
+│   │   └── SKILL.md
+│   └── ui-duarte/
+│       └── SKILL.md
 ├── config/
 │   └── settings.json      # Agent Teams 配置参考
 ├── README.md              # 本文档
